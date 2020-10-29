@@ -47,55 +47,61 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: FlatButton(
+          padding: EdgeInsets.all(5),
+          child: Text(
+            "pre.",
+            style: TextStyle(
+                color: Colors.white,
+                //fontWeight: FontWeight.bold,
+                fontSize: 20),
+          ),
+          onPressed: () {
+            setState(() {
+              quotesIndex--;
+              imagesIndex--;
+            });
+            print("prev.");
+          },
+        ),
         title: Text("Photos Gallery"),
         centerTitle: true,
         backgroundColor: Colors.blue[200],
+        actions: [
+          FlatButton(
+            child: Text(
+              "next",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20),
+            ),
+            onPressed: () {
+              setState(() {
+                quotesIndex++;
+                imagesIndex++;
+              });
+              print("next");
+            },
+          ),
+        ],
       ),
       body: Center(
         child: (quotesIndex < 8 && imagesIndex < 8)
             ? Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  RaisedButton(
-                    child: Text(
-                      "pre.",
-                      style: TextStyle(
-                          color: Colors.brown[600],
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        quotesIndex--;
-                        imagesIndex--;
-                      });
-                      print("prev.");
-                    },
-                  ),
-                  RaisedButton(
-                    child: Text(
-                      "next",
-                      style: TextStyle(
-                          color: Colors.brown[600],
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        quotesIndex++;
-                        imagesIndex++;
-                      });
-                      print("next");
-                    },
-                  ),
-                  Center(
-                    child: Text(
-                      quotes[quotesIndex],
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.blue[800],
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 10),
+                    child: Center(
+                      child: Text(
+                        quotes[quotesIndex],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.blue[800],
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      ),
                     ),
                   ),
                   Center(
