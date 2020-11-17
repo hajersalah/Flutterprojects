@@ -75,6 +75,9 @@ class _AddOrderSheetState extends State<AddOrderSheet> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 3),
                         child: DropdownButton(
+                          dropdownColor: dark
+                              ? Theme.of(context).accentColor
+                              : Theme.of(context).accentColor,
                           isExpanded: true,
                           value: selecteddeliveryMan,
                           style: TextStyle(
@@ -113,7 +116,7 @@ class _AddOrderSheetState extends State<AddOrderSheet> {
                             child: Text(
                               DateFormat("EEEE, dd/MM/yyyy")
                                   .format(selectedDate),
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 15),
                             ),
                             onPressed: () async {
                               DateTime date = await showDatePicker(
@@ -143,7 +146,7 @@ class _AddOrderSheetState extends State<AddOrderSheet> {
                         Text(
                           "at",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 15,
                           ),
                         ),
                         SizedBox(
@@ -153,7 +156,7 @@ class _AddOrderSheetState extends State<AddOrderSheet> {
                           color: dark ? Colors.grey[500] : Colors.blue[50],
                           child: Text(
                             DateFormat("hh:mm a").format(selectedDate),
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(fontSize: 15),
                           ),
                           onPressed: () async {
                             final time = await showTimePicker(

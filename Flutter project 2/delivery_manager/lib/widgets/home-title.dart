@@ -16,7 +16,8 @@ class HomeTitle extends StatelessWidget {
       child: Text(
         "Delivery Manager",
         style: TextStyle(
-          color: Theme.of(context).accentColor,
+          color: Colors.white,
+          //Theme.of(context).accentColor,
           fontSize: 30,
           fontWeight: FontWeight.bold,
         ),

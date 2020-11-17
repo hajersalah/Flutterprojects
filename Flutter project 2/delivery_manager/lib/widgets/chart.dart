@@ -201,13 +201,17 @@ class _ChartState extends State<Chart> {
                                                 print(event);
                                               },
                                             ),*/
-                                            child: GestureDetector(
-                                                onLongPress: () {
-                                              print("Muhammed Aly delivered " +
-                                                  count['Muhammed Aly']
-                                                      .toString() +
-                                                  " orders");
-                                            }),
+                                            child: Tooltip(
+                                              message:
+                                                  "Muhammed Aly delivered " +
+                                                      count['Muhammed Aly']
+                                                          .toString() +
+                                                      "orders",
+                                              //decoration:,
+                                              /*   onLongPress: () {
+                                             print("Muhammed Aly delivered " +count['Muhammed Aly'].toString() +
+                                                  " orders");*/
+                                            ),
                                             width: 20,
                                             height: count['Muhammed Aly'] *
                                                 constraints.maxHeight /
@@ -216,12 +220,15 @@ class _ChartState extends State<Chart> {
                                           ),
                                         if (count['Toka Ehab'] != 0)
                                           Container(
-                                            child: GestureDetector(
-                                                onLongPress: () {
-                                              print("Toka Ehab delivered " +
+                                            child: Tooltip(
+                                              message: "Toka Ehab delivered " +
                                                   count['Toka Ehab']
                                                       .toString() +
-                                                  " orders");
+                                                  "orders",
+                                              /*GestureDetector(
+                                                onLongPress: () {
+                                              print("Toka Ehab delivered " + count['Toka Ehab'.toString() +
+                                              " orders");*/
                                               /*child: FlatButton(
                                               onPressed: () {
                                                 print("Toka Ehab made " +
@@ -229,7 +236,7 @@ class _ChartState extends State<Chart> {
                                                         .toString() +
                                                     " orders");
                                               },child: null,),*/
-                                            }),
+                                            ),
                                             width: 20,
                                             height: count['Toka Ehab'] *
                                                 constraints.maxHeight /
@@ -238,13 +245,18 @@ class _ChartState extends State<Chart> {
                                           ),
                                         if (count['Ahmed Aly'] != 0)
                                           Container(
-                                            child: GestureDetector(
+                                            child: Tooltip(
+                                              message: "Ahmed Aly delivered " +
+                                                  count['Ahmed Aly']
+                                                      .toString() +
+                                                  "orders",
+                                              /*GestureDetector(
                                                 onLongPress: () {
                                               print("Ahmed Aly delivered " +
                                                   count['Ahmed Aly']
                                                       .toString() +
-                                                  " orders");
-                                            }),
+                                                  " orders");*/
+                                            ),
                                             width: 20,
                                             height: count['Ahmed Aly'] *
                                                 constraints.maxHeight /

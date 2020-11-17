@@ -214,14 +214,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   widget.toggleTheme();
                 }),*/
-            Icon(
+            /* Icon(
               Icons.wb_sunny,
               color: Colors.amber,
-            ),
+            ),*/
             Switch(
                 // to change the active & inactivr Colors :
-                activeColor: Colors.black,
-                inactiveThumbColor: Colors.amber,
+                activeColor: Colors.amber,
+                inactiveThumbColor: Colors.black,
                 value: light,
                 onChanged: (value) {
                   setState(() {
@@ -229,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     widget.toggleTheme();
                   });
                 }),
-            Icon(Icons.brightness_3),
+            //Icon(Icons.brightness_3),
             FloatingActionButton(
               child: Icon(
                 Icons.add,
