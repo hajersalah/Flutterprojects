@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/helpers/movies_names.dart';
+//import 'package:movies_app/helpers/movies_names.dart';
+import 'package:movies_app/models/movie.dart';
+import 'package:movies_app/providers/movies_provider.dart';
 import 'package:page_indicator/page_indicator.dart';
+import 'package:provider/provider.dart';
 
 class NowPlaying extends StatelessWidget {
   @override
@@ -17,16 +20,20 @@ class NowPlaying extends StatelessWidget {
         child: PageView.builder(
           itemCount: 5,
           itemBuilder: (context, index) {
+            Movie movie =
+                Provider.of<MoviesProvider>(context).nowPlaying[index];
             return Stack(
               children: [
                 Container(
                   decoration: BoxDecoration(
-                      image: DecorationImage(
-                    //fit: BoxFit.cover, <<<<< this is better
-                    fit: BoxFit.fill,
-                    image: NetworkImage(
-                        MoviesNames.nowPlaying[index]['poster_url']),
-                  )),
+                    image: DecorationImage(
+                      //fit: BoxFit.cover, <<<<< this is better
+                      fit: BoxFit.cover,
+                      image: NetworkImage(movie.backPosterUrl),
+                      // now i dont need this dummy data ( MoviesNames):
+                      // MoviesNames.nowPlaying[index]['poster_url']),
+                    ),
+                  ),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
@@ -60,10 +67,13 @@ class NowPlaying extends StatelessWidget {
                   bottom: 40,
                   left: 10,
                   child: Text(
-                    MoviesNames.nowPlaying[index]['movie_name'],
+                    movie.title,
+                    // Now i dont need this dummy data
+                    //MoviesNames.nowPlaying[index]['movie_name'],
                     overflow: TextOverflow
                         .ellipsis, // when the name is too large ...>> 3 dots will appear
                     style: TextStyle(
+                      fontSize: 18,
                       color: Theme.of(context).accentColor,
                     ),
                   ),

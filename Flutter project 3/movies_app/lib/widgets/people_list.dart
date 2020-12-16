@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 //import 'package:movies_app/helpers/movies_names.dart';
-import 'package:movies_app/helpers/persons_name.dart';
+import 'package:movies_app/models/person.dart';
+import 'package:movies_app/providers/people_provider.dart';
+import 'package:provider/provider.dart';
 
-class PersonsList extends StatelessWidget {
+class PeopleList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,8 +13,11 @@ class PersonsList extends StatelessWidget {
       child: ListView.builder(
           itemExtent: 100,
           scrollDirection: Axis.horizontal,
-          itemCount: PersonsName.persons.length,
+          itemCount: 10,
+          //Provider.of<PeopleProvider>(context).trendingPeople.length,
           itemBuilder: (context, index) {
+            Person person =
+                Provider.of<PeopleProvider>(context).trendingPeople[index];
             return Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Column(children: [
@@ -22,23 +27,23 @@ class PersonsList extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: NetworkImage(
-                              PersonsName.persons[index]['image_url']),
+                          image: NetworkImage(person.posterUrl),
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Expanded(
                     flex: 3,
-                    child: FittedBox(
-                      child: Text(
-                        PersonsName.persons[index]['person_name'],
-                        style: TextStyle(color: Colors.white, fontSize: 10),
-                        overflow: TextOverflow.ellipsis,
-                        //maxLines: 2,
-                        textAlign: TextAlign.center,
-                      ),
+                    child: Text(
+                      person.name,
+                      style: TextStyle(color: Colors.white, fontSize: 13),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ]));

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/providers/genres_provider.dart';
 import 'package:movies_app/widgets/movies_list.dart';
+import 'package:provider/provider.dart';
 
 class MoviesByGenre extends StatefulWidget {
   @override
@@ -13,7 +15,10 @@ class _MoviesByGenreState extends State<MoviesByGenre>
   @override
   void initState() {
     super.initState();
-    controller = TabController(length: 6, vsync: this);
+    controller = TabController(
+        length:
+            Provider.of<GenresProvider>(context, listen: false).genres.length,
+        vsync: this);
   }
 
   @override
@@ -30,23 +35,21 @@ class _MoviesByGenreState extends State<MoviesByGenre>
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: 48,
-          bottom: TabBar(isScrollable: true, controller: controller, tabs: [
-            Tab(text: 'action'),
-            Tab(text: 'romance'),
-            Tab(text: 'Sci-Fi'),
-            Tab(text: 'horror'),
-            Tab(text: 'adventure'),
-            Tab(text: 'comedy'),
-          ]),
+          bottom: TabBar(
+            isScrollable: true,
+            controller: controller,
+            tabs: Provider.of<GenresProvider>(context).genres.map((genre) {
+              return Tab(
+                text: genre.name,
+              );
+            }).toList(),
+          ),
         ),
-        body: TabBarView(controller: controller, children: [
-          MoviesList(),
-          MoviesList(),
-          MoviesList(),
-          MoviesList(),
-          MoviesList(),
-          MoviesList(),
-          /*Container(
+        body: TabBarView(
+          controller: controller,
+          children: Provider.of<GenresProvider>(context).genres.map((genre) {
+            return MoviesList.byGenre(genre.id);
+            /*Container(
             color: Colors.amber,
           ),
           Container(
@@ -64,7 +67,8 @@ class _MoviesByGenreState extends State<MoviesByGenre>
           Container(
             color: Colors.orange,
           ),*/
-        ]),
+          }).toList(),
+        ),
       ),
     );
   }
